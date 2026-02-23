@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-investments
+    restart: always
+    environment:
+      POSTGRES_DB: "investments_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-investments
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "8123:80"
+
+volumes:
+  pgdata:
